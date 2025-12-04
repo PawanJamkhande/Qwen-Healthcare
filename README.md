@@ -83,3 +83,7 @@ instruction: user question / task
 input: optional extra context (can be "")
 output: desired answer (what you want the model to learn)
 Example minimal data/train.jsonl:
+
+## RESULT SCREENSHOT
+<img width="1133" height="841" alt="Screenshot 2025-12-04 at 15 04 49" src="https://github.com/user-attachments/assets/a7372d42-0420-4576-900c-3a5254033b51" />
+
