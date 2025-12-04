@@ -50,7 +50,7 @@ def chat(message):
     return response
 
 
-print("\n🤖 Model ready! Ask a medical question.\n")
+print("\n Model ready! Ask a medical question.\n")
 
 while True:
     user_input = input("🧑‍💻 You: ")
