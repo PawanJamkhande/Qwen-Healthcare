@@ -1,0 +1,17 @@
+# Ignore datasets
+data/
+
+# Ignore model weights and checkpoints
+qwen2_5_med_lora/
+*.safetensors
+*.bin
+*.pt
+
+# HuggingFace cache
+cache/
+huggingface/
+~*/ # backup files
+
+# Python cache
+__pycache__/
+*.pyc
