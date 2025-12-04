@@ -14,25 +14,25 @@ import torch
 # -----------------------------------
 # CONFIG — CHANGE THESE FOR YOUR DATA
 # -----------------------------------
-MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"  # smaller? use 0.5B
-DATA_PATH = "data/train.jsonl"            # your dataset file
-OUTPUT_DIR = "./qwen2_5_med_lora"         # where model will be saved
+MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"  # I used 0.5B cz smaller size in mac if you have heavy loading laptop you can go for 1.5B-Instruct
+DATA_PATH = "data/train.jsonl"            # this is my dataset file
+OUTPUT_DIR = "./qwen2_5_med_lora"         # this is where model will be saved this will generate automatically
 
-MAX_LEN = 512  # reduce if GPU is small (like 1024)
+MAX_LEN = 512  # i dont have GPU so i used 512 (if you have GPU you can use 1024 or if higher then 2056
 
 
 # 1) Load dataset
-print("📚 Loading dataset...")
+print(" Loading dataset...")
 dataset = load_dataset("json", data_files={"train": DATA_PATH})
 
 # 2) Load tokenizer
-print("🔠 Loading tokenizer...")
+print(" Loading tokenizer...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
 tokenizer.pad_token = tokenizer.eos_token
 
 
 # 3) Load base model in 4-bit (QLoRA memory-efficient mode)
-print("🤖 Loading base model (CPU, no 4-bit quantization)...")
+print(" Loading base model (CPU, no 4-bit quantization)...")
 # Running on macOS without CUDA: avoid bitsandbytes 4-bit quantization.
 # Load model on CPU (or a CUDA-enabled machine if available and desired).
 model = AutoModelForCausalLM.from_pretrained(
@@ -80,7 +80,7 @@ def format_example(ex):
     return {"text": text}
 
 
-print("🧩 Formatting dataset...")
+print(" Formatting dataset...")
 dataset = dataset.map(format_example)
 
 
@@ -125,7 +125,7 @@ training_args = TrainingArguments(
     optim="adamw_torch",
     report_to="none",
 )
-
+#you can change the upper values and see the affect on the model
 
 
 # 9) Trainer
